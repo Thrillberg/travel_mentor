@@ -1,0 +1,9 @@
+= bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-6") do |f|
+  %header
+    %h1 Register
+  %fieldset
+    = f.email_field :email, label: "Email Address"
+    = f.password_field :password
+    = f.text_field :first_name, label: "First Name"
+    = f.text_field :last_name, label: "Last Name"
+    = f.submit "Register", class: "btn btn_default"
