@@ -1,0 +1,42 @@
+﻿.content-wrapper
+  .container
+    .row
+      .col-md-12
+        %h4.page-head-line Welcome!
+    .row
+      .col-md-12
+        Travel Mentor is a matchmaking site for travelers who want to learn the inside scoop on their destination.
+        %br/
+        Simply sign up, indicate which city (or cities) you plan to travel to (or are simply interested in) and find someone who knows that city!
+
+    %br/
+
+    .row
+      .col-md-3.col-sm-3.col-xs-6
+        .dashboard-div-wrapper.bk-clr-one
+          %i.fa.fa-flag.fa-2x.dashboard-div-icon
+          %h5
+            Find your city.
+
+      .col-md-3.col-sm-3.col-xs-6
+        .dashboard-div-wrapper.bk-clr-two
+          %i.fa.fa-comments.fa-2x.dashboard-div-icon
+          %h5
+            Connect with a local.
+
+      .col-md-3.col-sm-3.col-xs-6
+        .dashboard-div-wrapper.bk-clr-three
+          %i.fa.fa-edit.fa-2x.dashboard-div-icon
+          %h5
+            Plan your trip.  
+
+      = link_to register_path do
+        .col-md-3.col-sm-3.col-xs-6
+          .dashboard-div-wrapper.bk-clr-four
+            %i.fa.fa-plane.fa-2x.dashboard-div-icon
+            %h5
+              Go explore!
+
+    .row.text-center
+      = link_to "Register", register_path, class: "btn btn-primary btn-lg"
+      = link_to "Sign In", sign_in_path, class: "btn btn-success btn-lg"

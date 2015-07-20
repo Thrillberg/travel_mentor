@@ -7,4 +7,8 @@ class PasswordResetsController < ApplicationController
       redirect_to expired_token_path
     end
   end
+
+  def create
+    redirect_to sign_in_path
+  end
 end

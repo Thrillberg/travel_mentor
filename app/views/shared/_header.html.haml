@@ -1,0 +1,19 @@
+.navbar.navbar-inverse.set-radius-zero
+  .container
+    .navbar-header
+      %h1
+        = link_to 'Travel Mentor', root_path, id: 'white'
+
+- if current_user
+  %section.menu-section
+    .container
+      .row
+        .col-md-12
+          .navbar-collapse.collapse
+            %ul.nav.navbar-nav.navbar-right#menu-top
+              %li
+                = link_to 'People', home_path
+              %li
+                = link_to 'Profile', home_path
+              %li
+                = link_to 'Sign Out', sign_out_path, method: :delete

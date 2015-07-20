@@ -1,9 +1,35 @@
-= bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-6") do |f|
-  %header
-    %h1 Register
-  %fieldset
-    = f.email_field :email, label: "Email Address"
-    = f.password_field :password
-    = f.text_field :first_name, label: "First Name"
-    = f.text_field :last_name, label: "Last Name"
-    = f.submit "Register", class: "btn btn_default"
+.content-wrapper
+  .container
+    = bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-6") do |f|
+      .row
+        .col-md-12
+          %h4.page-head-line Register
+      .row
+        .col-md-6.well
+          .col-md-6
+            = f.email_field :email, label: "Email Address"
+            %br/
+            = f.password_field :password
+          .col-md-6
+            = f.text_field :first_name, label: "First Name"
+            %br/
+            = f.text_field :last_name, label: "Last Name"
+          
+          .col-md-6
+            %script{:type => "text/javascript"}
+              $(document).ready(function() {
+              $('#user_interests').multiselect();
+              $('#user_cities').multiselect();
+              });
+            %br/
+            = f.select :interests, options_for_select(@interest_options), {}, { :multiple => 'multiple', :label => "Activity Interests" }
+            %br/
+            = f.select :cities, options_for_select(@city_options), {}, { :multiple => 'multiple', :label => "City Of Interest" }
+          .row
+          .col-md-6
+            %br/
+            = f.submit "Register", class: "btn btn-primary"
+
+        .col-md-6
+          .alert.alert-success
+            Once you've registered, you will be automatically brought to the home page. From there you can select your city of interest and find others who can chat with you about that city.

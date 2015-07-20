@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   before_filter :require_user, only: [:show]
 
   def new
+    @interest_options = Interest.all.map{ |u| [u.name, u.id] }
+    @city_options = City.all.map{ |u| [u.name, u.id] }
     @user = User.new
   end
 

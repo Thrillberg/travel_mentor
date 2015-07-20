@@ -1,0 +1,16 @@
+- if @over_ten
+  = link_to ‘Show Previous’, ‘?m=all’
+
+.ui.segment
+  - @messages.each do |message|
+    - if message.body
+      - user = User.find(message.user_id)
+      .item
+      .content
+        .header
+          = user.first_name
+          = message.message_time
+        .list
+        .item
+          = message.body
+ 
