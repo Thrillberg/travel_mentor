@@ -1,10 +1,7 @@
 class Message < ActiveRecord::Base
+  belongs_to :author, :foreign_key => :author_id, class_name: "User"
+  belongs_to :reader, :foreign_key => :reader_id, class_name: "User"
   belongs_to :conversation
-  belongs_to :user
 
-  validates_presence_of :body, :conversation_id, :user_id
-  
-  #def message_time
-  #  create_at.strftime(“%m/%d/%y at %l:%M %p”)
-  #end
+  validates_presence_of :body, :conversation_id, :author_id, :reader_id
 end

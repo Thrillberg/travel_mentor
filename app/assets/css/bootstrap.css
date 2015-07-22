@@ -6,12 +6,14 @@
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
-#white a:link, a:visited{
-  color: white;
-  text-decoration: none;
+.gravatar-header {
+  float: right;
+  border: 2px solid white;
 }
 
-
+#white-title {
+  color:white;
+}
 
 html {
   font-family: sans-serif;

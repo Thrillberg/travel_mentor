@@ -1,22 +1,15 @@
-.ui.segment
-  %h3
-    Mailbox
-
-.ui.list
-  .item
-    - @conversations.each do |conversation|
-      - if conversation.sender_id == current_user.id ||      conversation.recipient_id == current_user.id
-        - if conversation.sender_id == current_user.id
-          - recipient = User.find(conversation.recipient_id)
-        -else
-          - recipient = User.find(conversation.sender_id)
-      = link_to recipient.first_name,   conversation_messages_path(conversation)
-
-.ui.segment
-  %h3
-    All Users
-  .ui.list
-    - @users.each do |user|
-      - if user.id != current_user.id
-        .item
-          = user.first_name link_to ‘Message me!’, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: ‘post’
+.content-wrapper
+  .container
+    .row
+      .col-md-12
+        %h4.page-head-line Your Conversations
+      .row
+      - @conversations.each do |conversation|
+        .col-md-4.col-sm-4
+          .panel.panel-default
+            .panel-heading
+              Most recent messages from #{ link_to "#{conversation.messages.last.author.first_name} #{conversation.messages.last.author.last_name}", conversation_messages_path(conversation)}
+            .panel-body
+              = conversation.messages.last.body
+            .panel-footer
+              = conversation.messages.last.created_at.strftime("Sent on %B %d, %Y at %H:%M")

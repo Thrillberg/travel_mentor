@@ -1,16 +1,17 @@
-- if @over_ten
-  = link_to ‘Show Previous’, ‘?m=all’
-
-.ui.segment
-  - @messages.each do |message|
-    - if message.body
-      - user = User.find(message.user_id)
-      .item
-      .content
-        .header
-          = user.first_name
-          = message.message_time
-        .list
-        .item
-          = message.body
- 
+.content-wrapper
+  .container
+    .row
+      .col-md-12
+        %h4.page-head-line Messages from #{@conversation.recipient.first_name}
+    .row
+      .col-md-12
+        .panel-group{ :id => "accordion" }
+          - @messages.each_with_index do |message, index|
+            .panel.panel-default
+              .panel-heading
+                .panel-title
+                  %a{"data-toggle" => "collapse", "data-parent" => "#accordion", :href => "#collapse#{index.to_s}"}
+                    = message.created_at.strftime("From %B %d, %Y at %H:%M")
+              %div{:id => "collapse#{index.to_s}", :class => "panel-collapse collapse in"}
+                .panel-body
+                  = message.body

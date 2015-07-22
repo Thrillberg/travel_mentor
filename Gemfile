@@ -18,6 +18,7 @@ gem 'fabrication'
 gem 'faker'
 gem 'font-awesome-rails'
 gem 'bootstrap-multiselect-rails'
+gem 'gravtastic'
 
 group :development, :test do
   gem 'byebug'
