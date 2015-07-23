@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_user, only: [:show]
+  attr_accessor :interest_id
 
   def new
     @interest_options = Interest.all.map{ |u| [u.name, u.id] }
@@ -24,6 +25,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :password, :email)
+    params.require(:user).permit(:first_name, :last_name, :password, :email, interest_ids: [], city_ids:[])
   end
 end

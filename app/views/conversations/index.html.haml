@@ -8,7 +8,10 @@
         .col-md-4.col-sm-4
           .panel.panel-default
             .panel-heading
-              Most recent messages from #{ link_to "#{conversation.messages.last.author.first_name} #{conversation.messages.last.author.last_name}", conversation_messages_path(conversation)}
+              = link_to "Conversation between #{conversation.sender.first_name} #{conversation.sender.last_name} and #{conversation.recipient.first_name} #{conversation.recipient.last_name}.", conversation_messages_path(conversation)
+              .gravatar-header
+                = link_to image_tag(conversation.sender.gravatar_url, :size => "30"), user_path(current_user)
+                = link_to image_tag(conversation.recipient.gravatar_url, :size => "30"), user_path(current_user)
             .panel-body
               = conversation.messages.last.body
             .panel-footer

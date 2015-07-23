@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'expired_token', to: 'pages#expired_token'
 
   resources :users, only: [:create, :show]
+  get 'people', to: 'relationships#index'
 
   get 'interests', to: 'interests#index'
   resources :interests, only: [:create, :destroy]

@@ -1,0 +1,16 @@
+.content-wrapper
+  .container
+    .row
+      .col-md-12
+        %h4.page-head-line Your Connections
+      .row
+      - @relationships.each do |relationship|
+        .col-md-4.col-sm-4
+          .panel.panel-default
+            .panel-heading
+              = link_to "#{relationship.leader.first_name} #{relationship.leader.last_name}", relationship.leader
+              .gravatar-header
+                = link_to image_tag(relationship.leader.gravatar_url, :size => "30"), user_path(current_user)
+              .pull-right.padding
+                = link_to relationship, method: :delete do
+                  %i.fa.fa-remove.fa-2x
