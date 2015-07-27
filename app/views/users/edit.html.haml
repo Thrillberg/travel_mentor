@@ -1,0 +1,20 @@
+.content-wrapper
+  = render 'shared/content_title', title: "Edit Your Profile"
+  .container
+    .row
+      .col-md-12
+        = bootstrap_form_for(@user, label_col: "col-sm-2", control_col: "col-sm-6") do |f|
+          %script{:type => "text/javascript"}
+            :plain
+                $(document).ready(function() {
+                  $('#user_interest_ids').multiselect();
+                  $('#user_city_ids').multiselect();
+                });
+          %br/
+          = f.select :interest_ids, options_for_select(@interest_options), { label: "Activity Interests" }, { multiple: true }
+          %br/
+          = f.select :city_ids, options_for_select(@city_options), { label: "City Of Interest" }, { multiple: true }
+          .row
+          .col-md-6
+            %br/
+            = f.submit "Update Your Profile", class: "btn btn-primary"

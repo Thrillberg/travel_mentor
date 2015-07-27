@@ -17,14 +17,15 @@
           
           .col-md-6
             %script{:type => "text/javascript"}
-              $(document).ready(function() {
-              $('#user_interest_ids').multiselect();
-              $('#user_city_ids').multiselect();
-              });
+              :plain
+                $(document).ready(function() {
+                  $('#user_interest_ids').multiselect();
+                  $('#user_city_ids').multiselect();
+                });
             %br/
-            = f.select :interest_ids, options_for_select(@interest_options), multiple: 'multiple', label: "Activity Interests"
+            = f.select :interest_ids, options_for_select(@interest_options), { label: "Activity Interests" }, { multiple: 'multiple' }
             %br/
-            = f.select :city_ids, options_for_select(@city_options), multiple: 'multiple', label: "City Of Interest"
+            = f.select :city_ids, options_for_select(@city_options), { label: "City Of Interest" }, { multiple: 'multiple' }
           .row
           .col-md-6
             %br/

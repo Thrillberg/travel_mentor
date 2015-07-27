@@ -1,5 +1,5 @@
 .content-wrapper
-  = render 'shared/content_title', title: "Your Conversations"
+  = render 'shared/content_title', title: "All Conversations"
   .container
     .row
       .col-md-12
@@ -7,10 +7,7 @@
         .col-md-4.col-sm-4
           .panel.panel-default
             .panel-heading
-              - if current_user.admin?
-                = link_to "Conversation between #{conversation.sender.first_name} #{conversation.sender.last_name} and #{conversation.recipient.first_name} #{conversation.recipient.last_name}.", admin_conversation_messages_path(conversation)
-              - else
-                = link_to "Conversation between #{conversation.sender.first_name} #{conversation.sender.last_name} and #{conversation.recipient.first_name} #{conversation.recipient.last_name}.", conversation_messages_path(conversation)
+              = link_to "Conversation between #{conversation.sender.first_name} #{conversation.sender.last_name} and #{conversation.recipient.first_name} #{conversation.recipient.last_name}.", admin_conversation_messages_path(conversation)
 
               .gravatar-header
                 = link_to image_tag(conversation.sender.gravatar_url, :size => "30"), user_path(current_user)

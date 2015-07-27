@@ -9,7 +9,8 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to home_path, notice: "You have successfully signed in!"
+      redirect_to home_path
+      flash[:success] = "You have successfully signed in!"
     else
       flash[:error] = "There is a problem with your email or password."
       redirect_to sign_in_path
@@ -18,7 +19,8 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path, notice: "You are signed out."
+    redirect_to root_path
+    flash[:success] =  "You are signed out."
   end
 
 end

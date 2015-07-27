@@ -15,8 +15,20 @@
           .navbar-collapse.collapse
             %ul.nav.navbar-nav.navbar-right#menu-top
               %li
-                = link_to 'People', people_path
+                = link_to 'Find People', people_path
               %li
-                = link_to 'Profile', user_path(current_user)
+                = link_to 'Your Connections', connections_path
+              %li
+                = link_to 'Profile', edit_user_path(current_user)
               %li
                 = link_to 'Sign Out', sign_out_path, method: :delete
+  - if current_user.admin?
+    %section.menu-section
+      .container
+        .row
+          .col-md-12
+            .navbar-collapse.collapse
+              %ul.nav.navbar-nav.navbar-right#menu-top
+                %li
+                  = link_to 'All Conversations', admin_conversations_path
+              

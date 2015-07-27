@@ -22,18 +22,33 @@ skydiving = Interest.create!(name: "Skydiving")
 games = Interest.create!(name: "Games")
 walking = Interest.create(name: "Walking")
 
-User.create!(first_name: "Eric", last_name: "Tillberg", email: "eric@example.com", password: "password")
+User.create!(first_name: "Eric", last_name: "Tillberg", email: "eric@example.com", password: "password", admin: true)
 User.create!(first_name: "Peter", last_name: "Peterson", email: "peter@example.com", password: "password")
 User.create!(first_name: "Jonathan", last_name: "Jonnersons", email: "jonathan@example.com", password: "password")
+
+UserInterest.create!(interest_id: 1, user_id: 1)
+UserInterest.create!(interest_id: 4, user_id: 2)
+UserInterest.create!(interest_id: 2, user_id: 3)
+UserInterest.create!(interest_id: 2, user_id: 1)
+UserInterest.create!(interest_id: 3, user_id: 1)
+
+UserCity.create!(city_id: 1, user_id: 1)
+UserCity.create!(city_id: 4, user_id: 2)
+UserCity.create!(city_id: 2, user_id: 3)
+UserCity.create!(city_id: 1, user_id: 3)
+UserCity.create!(city_id: 5, user_id: 3)
 
 Relationship.create!(leader_id: 1, follower_id: 2)
 Relationship.create!(leader_id: 2, follower_id: 1)
 Relationship.create!(leader_id: 1, follower_id: 3)
 Relationship.create!(leader_id: 3, follower_id: 1)
+Relationship.create!(leader_id: 2, follower_id: 3)
+Relationship.create!(leader_id: 3, follower_id: 2)
 
 
 Conversation.create!(sender_id: 1, recipient_id: 2)
 Conversation.create!(sender_id: 1, recipient_id: 3)
+Conversation.create!(sender_id: 2, recipient_id: 3)
 
 Message.create!(body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pretium ipsum ut orci fringilla tincidunt. Etiam id nisi sed nulla vehicula luctus. Nam nec fermentum turpis, at bibendum augue. Donec commodo est mi, nec iaculis metus viverra et. Praesent erat enim, rutrum quis nisl vitae, congue interdum arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus viverra, augue ut commodo pulvinar, ipsum purus aliquet magna, nec rhoncus ipsum libero eu augue. Suspendisse iaculis mauris ut lectus pellentesque, quis commodo magna tristique. Nulla euismod lectus eget posuere laoreet. Nunc pulvinar eu tortor ut posuere. Quisque nec arcu a urna convallis sagittis. Donec eget iaculis arcu. Integer ultrices massa vitae tortor malesuada sagittis quis vitae orci. Sed imperdiet urna vel mattis consectetur. Quisque sollicitudin mauris at est tempor, vestibulum viverra urna convallis.
 
@@ -50,3 +65,9 @@ Message.create!(body: "Interdum et malesuada fames ac ante ipsum primis in fauci
 Message.create!(body: "erat, eget consequat tellus porttitor vitae. Ut rhoncus leo a nisl tempus, sed iaculis eros scelerisque. Maecenas eget lorem porta, dapibus orci sit amet, feugiat purus. Fusce lacinia orci pretium quam porttitor commodo. Sed porta egestas tellus, a", conversation_id: 1, author_id: 2, reader_id: 1)
 
 Message.create!(body: "This is great! Apibus orci sit amet, feugiat purus. Fusce lacinia orci pretium quam porttitor commodo. Sed porta egestas tellus, a", conversation_id: 2, author_id: 1, reader_id: 3)
+
+Message.create!(body: "MONEYMONEYMONEY", conversation_id: 3, author_id: 2, reader_id: 3)
+
+Message.create!(body: "Thiinterruptingstarfish! a", conversation_id: 3, author_id: 3, reader_id: 2)
+
+Message.create!(body: "All eyes descend on one.", conversation_id: 3, author_id: 2, reader_id: 3)

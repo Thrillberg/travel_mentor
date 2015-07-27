@@ -1,0 +1,21 @@
+.content-wrapper
+  .container
+    .row
+      .col-md-12
+        %h4.page-head-line Find People
+      %h3
+        By City
+      - @cities.each do |city|
+        = link_to city.name
+        %br/
+      = bootstrap_form_for @city do |f|
+        = f.text_field :name, label: "Or add your own:"
+        = f.submit "Add"
+      %h3
+        By Interest
+      - @interests.each do |interest|
+        = link_to interest.name
+        %br/
+      = bootstrap_form_for @interest do |f|
+        = f.text_field :name, label: "Or add your own:"
+        = f.submit "Add"

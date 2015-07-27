@@ -14,11 +14,6 @@ class ConversationsController < ApplicationController
     redirect_to conversations_path
   end
 
-  def show
-    @conversation = Conversation.find(params[:id])
-    @messages = @conversation.messages
-  end
-
   private
 
   def conversation_params

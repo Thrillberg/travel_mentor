@@ -11,8 +11,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'pg'
-gem 'bootstrap-form'
-gem 'bootstrap_forms'
+gem 'bootstrap_form'
 gem 'bcrypt'
 gem 'fabrication'
 gem 'faker'
@@ -27,6 +26,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails'
+  gem 'letter_opener'
 end
 
 group :test do
