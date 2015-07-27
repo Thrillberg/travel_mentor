@@ -37,22 +37,5 @@ describe ConversationsController do
         expect(response).to redirect_to sign_in_path
       end
     end
-
-    describe "GET show" do
-      it "sets the @conversation for authenticated users" do
-        current_user = Fabricate(:user)
-        session[:user_id] = current_user.id
-        conversation = Fabricate(:conversation, recipient_id: recipient.id, sender_id: current_user.id)
-        get :show, id: conversation.id
-        expect(assigns(:conversation)).to eq(conversation)
-      end
-
-      it "redirects to the user sign in page for unauthenticated users" do
-        unauth_user = Fabricate(:user)
-        conversation = Fabricate(:conversation, recipient_id: recipient.id, sender_id: unauth_user.id)
-        get :show, id: conversation.id
-        expect(response).to redirect_to sign_in_path
-      end
-    end
   end
 end

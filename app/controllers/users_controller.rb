@@ -10,18 +10,19 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
     @interest_options = Interest.all.map{ |u| [u.name, u.id] }
     @city_options = City.all.map{ |u| [u.name, u.id] }
-    @user = User.new
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
+      flash[:success] = "Thank you for registering with Travel Mentor."
       redirect_to home_path
     else
-      flash.now[:error] = "Please fill in all fields."
-      render action: "new"
+      flash[:error] = "Please fill in all fields."
+      redirect_to register_path
     end
   end
 

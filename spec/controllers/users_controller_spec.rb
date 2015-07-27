@@ -20,7 +20,7 @@ describe UsersController do
     context "failed user registration" do
       it "renders the new template" do
         post :create, user: { first_name: "Bob" }
-        expect(response).to render_template :new
+        expect(response).to redirect_to register_path
       end
 
       it "sets the flash error message" do

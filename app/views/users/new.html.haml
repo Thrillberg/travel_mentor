@@ -23,9 +23,9 @@
                   $('#user_city_ids').multiselect();
                 });
             %br/
-            = f.select :interest_ids, options_for_select(@interest_options), { label: "Activity Interests" }, { multiple: 'multiple' }
+            = f.select :interest_ids, options_for_select(@interest_options), { label: "What Activies Are You Interested In?" }, { multiple: 'multiple' }
             %br/
-            = f.select :city_ids, options_for_select(@city_options), { label: "City Of Interest" }, { multiple: 'multiple' }
+            = f.select :city_ids, options_for_select(@city_options), { label: "What Cities Do You Know Well?" }, { multiple: 'multiple' }
           .row
           .col-md-6
             %br/
