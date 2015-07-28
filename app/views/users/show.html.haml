@@ -2,7 +2,7 @@
   = render 'shared/content_title', title: "#{@user.first_name} #{@user.last_name}'s Profile"
   .container
     .row
-      .col-md-12
+      .col-md-6
         .panel.panel-default
           .panel-heading
             Interests
@@ -19,4 +19,21 @@
               - @user.cities.each do |city|
                 .list-group-item
                   = link_to "#{city.name}", user_path
+        - if @user == current_user
+          = link_to "Edit your profile", edit_user_path, class: "btn btn-primary"
+      - if @user != current_user
+        .col-md-6
+          .Compose-Message
+            .panel.panel-success
+              .panel-heading
+                = "Compose New Message to #{@user.first_name} #{@user.last_name}"
+              .panel-body
+                - if @conversation.present?
+                  = form_for [@conversation, @message] do |f|
+                    = f.text_area :body, rows: 6
+                    %br/
+                    = f.submit
+                - else
+                  
+
                               

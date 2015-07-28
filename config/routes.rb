@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get 'connections', to: 'relationships#index'
   get 'people', to: 'users#index'
 
+  resources :relationships, only: [:create, :destroy]
+
   get 'interests', to: 'interests#index'
   resources :interests, only: [:create, :destroy]
 

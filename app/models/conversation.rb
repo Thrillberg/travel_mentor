@@ -9,6 +9,8 @@ class Conversation < ActiveRecord::Base
 
   validates_presence_of :sender_id, :recipient_id
 
+  accepts_nested_attributes_for :messages
+
   def self.between(sender_id, recipient_id)
     where("(conversations.sender_id = ? AND conversations.recipient_id =?) OR (conversations.sender_id = ? AND conversations.recipient_id =?)", sender_id, recipient_id, recipient_id, sender_id)
   end

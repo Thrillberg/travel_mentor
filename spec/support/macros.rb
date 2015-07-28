@@ -13,3 +13,4 @@ def sign_in(user = nil)
   fill_in "password", with: user.password
   click_button "Sign In"
 end
+

@@ -28,7 +28,11 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @conversation.messages.new(message_params)
+    @message = Message.new(message_params)
+    @conversation = Conversation.find(params[:conversation_id])
+    @message.conversation = Conversation.find(params[:conversation_id])
+    @message.author = current_user
+    @message.reader = User.where((@conversation.recipient != current_user && @conversation.sender != current_user) && (@conversation.recipient || @conversation.sender))[0]
     if @message.save
       redirect_to conversation_messages_path(@conversation)
     end

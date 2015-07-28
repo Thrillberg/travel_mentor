@@ -28,6 +28,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @conversation = Conversation.between(current_user, @user)[0]
+    @message = Message.new
   end
 
   def edit
