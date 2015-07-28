@@ -3,18 +3,38 @@
   .container
     .row
       .col-md-12
-        = bootstrap_form_for(@user, label_col: "col-sm-2", control_col: "col-sm-6") do |f|
-          %script{:type => "text/javascript"}
-            :plain
-                $(document).ready(function() {
-                  $('#user_interest_ids').multiselect();
-                  $('#user_city_ids').multiselect();
-                });
-          %br/
-          = f.select :interest_ids, options_for_select(@interest_options), { label: "Activity Interests" }, { multiple: true }
-          %br/
-          = f.select :city_ids, options_for_select(@city_options), { label: "City Of Interest" }, { multiple: true }
-          .row
-          .col-md-6
-            %br/
-            = f.submit "Update Your Profile", class: "btn btn-primary"
+
+
+      = bootstrap_form_for(@user) do |f|
+        %script{:type => "text/javascript"}
+          :plain
+            $(document).ready(function() {
+              $('#user_interest_ids').multiselect();
+              $('#user_city_ids').multiselect();
+            });
+
+
+        .panel.panel-default
+          .panel-heading
+            Your Activity Interests
+          .panel-body
+            .list-group
+              - @user.interests.each do |interest|
+                .list-group-item 
+                  = link_to "#{interest.name}", user_path
+              - Interest.all.each do |interest|
+                = check_box_tag :interest_ids, interest.id, @user.interests.include?(interest), :name => 'user[interest_ids][]'
+                = label_tag :interest_ids, interest.name
+        .panel.panel-default
+          .panel-heading
+            Your Cities
+          .panel-body
+            .list-group
+              - @user.cities.each do |city|
+                .list-group-item
+                  = link_to "#{city.name}", user_path
+              - City.all.each do |city|
+                = check_box_tag :city_ids, city.id, @user.cities.include?(city), :name => 'user[city_ids][]'
+                = label_tag :city_ids, city.name
+
+        = f.submit "Update Your Profile", class: "btn btn-primary"

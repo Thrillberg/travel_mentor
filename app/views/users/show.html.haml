@@ -1,20 +1,22 @@
-= render 'shared/content_title', title: "#{@user.first_name} #{@user.last_name}'s Profile"
-.row
-  %h3
-    Interests
-  %br/
-  - @user.interests.each do |interest|
-    .col-md-4.col-sm-4
-      .panel.panel-default
-        .panel-heading
-          = link_to "#{interest.name}", user_path
-.row
-  %h3
-    Cities of Interest
-  %br/
-  - @user.cities.each do |city|
-    .col-md-4.col-sm-4
-      .panel.panel-default
-        .panel-heading
-          = link_to "#{city.name}", user_path
-                        
+.content-wrapper
+  = render 'shared/content_title', title: "#{@user.first_name} #{@user.last_name}'s Profile"
+  .container
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-heading
+            Interests
+          .panel-body
+            .list-group
+              - @user.interests.each do |interest|
+                .list-group-item 
+                  = link_to "#{interest.name}", user_path
+        .panel.panel-default
+          .panel-heading
+            Cities
+          .panel-body
+            .list-group
+              - @user.cities.each do |city|
+                .list-group-item
+                  = link_to "#{city.name}", user_path
+                              
