@@ -2,11 +2,11 @@
   .container
     .row
       .col-md-12
-        %h4.page-head-line Your Messages with #{@correspondent.first_name}
+        %h4.page-head-line #{@conversation.title(current_user)}
     .row
       .col-md-12
         .panel-group{ :id => "accordion" }
-          - @users_messages.each_with_index do |message, i|
+          - @conversation.messages.each_with_index do |message, i|
             .panel.panel-default
               .panel-heading
                 .panel-title
@@ -17,6 +17,5 @@
                   = message.body
         = bootstrap_form_for Message.new do |f|
           = f.text_area :body, rows: 6
-          
+          = f.hidden_field :conversation_id, value: conversation_id
           = f.submit
-          
