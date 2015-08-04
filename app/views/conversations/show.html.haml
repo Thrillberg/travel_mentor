@@ -1,0 +1,22 @@
+.content-wrapper
+  .container
+    .row
+      .col-md-12
+        %h4.page-head-line Your Messages with #{@correspondent.first_name}
+    .row
+      .col-md-12
+        .panel-group{ :id => "accordion" }
+          - @users_messages.each_with_index do |message, i|
+            .panel.panel-default
+              .panel-heading
+                .panel-title
+                  %a{"data-toggle" => "collapse", "data-parent" => "#accordion", :href => "#collapse#{i.to_s}"}
+                    = message.created_at.strftime("From #{message.author.first_name} on %B %d, %Y at %H:%M")
+              %div{:id => "collapse#{i.to_s}", :class => "panel-collapse collapse in"}
+                .panel-body
+                  = message.body
+        = bootstrap_form_for Message.new do |f|
+          = f.text_area :body, rows: 6
+          
+          = f.submit
+          

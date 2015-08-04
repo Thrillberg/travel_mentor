@@ -29,11 +29,13 @@
                 = "Compose New Message to #{@user.first_name} #{@user.last_name}"
               .panel-body
                 - if @conversation.present?
-                  = form_for [@conversation, @message] do |f|
+                  = bootstrap_form_for [@conversation, @message] do |f|
                     = f.text_area :body, rows: 6
-                    %br/
                     = f.submit
                 - else
-                  
-
-                              
+                  = bootstrap_form_for Conversation.new do |f|
+                    = f.hidden_field :recipient_id, :value => params[:id]
+                    -require 'pry';binding.pry
+                    = fields_for @message do |m|
+                      = m.text_area :body
+                      = m.submit            

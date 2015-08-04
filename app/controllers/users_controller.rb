@@ -28,7 +28,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @conversation = Conversation.between(current_user, @user)[0]
+    if Conversation.between(current_user, @user)[0]
+      @conversation = Conversation.between(current_user, @user)[0]
+    else
+      #@new_conversation = Conversation.new
+      #@new_conversation.sender = current_user
+      #@new_conversation.recipient = User.find(params[:id])
+      #@new_conversation.save
+    end
     @message = Message.new
   end
 

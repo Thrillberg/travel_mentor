@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'pages#front'
   get '/home', to: 'conversations#index'
 
+  resources :conversations, only: [:show]
+
   get '/register', to: 'users#new', as: 'register'
 
   get '/sign_in', to: 'sessions#new', as:'sign_in'
@@ -30,13 +32,9 @@ Rails.application.routes.draw do
   get 'cities', to: 'cities#index'
   resources :cities, only: [:create, :destroy]
 
-  resources :conversations do
-    resources :messages
-  end
+  resources :messages
 
   namespace :admin do
-    resources :conversations do
-      resources :messages
-    end
+    resources :messages
   end
 end

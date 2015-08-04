@@ -2,16 +2,19 @@
   .container
     .row
       .col-md-12
-        %h4.page-head-line Messages between you and #{@conversation.recipient.first_name}
+        %h4.page-head-line Messages between you and #{correspondent}.
     .row
       .col-md-12
         .panel-group{ :id => "accordion" }
-          - @messages.each_with_index do |message, index|
+          - @messages.each do |message|
+            %h4
+              = link_to "Conversation between #{messages.first.author.first_name} and #{messages.first.reader.first_name}.", messages_path()
             .panel.panel-default
               .panel-heading
                 .panel-title
-                  %a{"data-toggle" => "collapse", "data-parent" => "#accordion", :href => "#collapse#{index.to_s}"}
-                    = message.created_at.strftime("From #{message.author.first_name} on %B %d, %Y at %H:%M")
-              %div{:id => "collapse#{index.to_s}", :class => "panel-collapse collapse in"}
+                  %a{"data-toggle" => "collapse", "data-parent" => "#accordion", :href => "#collapse#{conversation_id.to_s}"}
+                    = messages.last.created_at.strftime("From #{messages.last.author.first_name} on %B %d, %Y at %H:%M")
+              %div{:id => "collapse#{conversation_id.to_s}", :class => "panel-collapse collapse in"}
                 .panel-body
                   = message.body
+          
