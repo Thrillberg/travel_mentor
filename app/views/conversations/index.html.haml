@@ -6,15 +6,15 @@
     .row
       .col-md-12
         .panel-group{ :id => "accordion" }
-          - @conversations.each do |conversation_id, messages|
+          - @conversations.each do |conversation|
             %h4
-              = link_to "Conversation between #{messages.first.author.first_name} and #{messages.first.reader.first_name}", conversation_path(conversation_id)
+              = link_to "#{conversation.title(current_user)}", conversation_path(conversation.id)
             .panel.panel-default
               .panel-heading
                 .panel-title
-                  %a{"data-toggle" => "collapse", "data-parent" => "#accordion", :href => "#collapse#{conversation_id.to_s}"}
-                    = messages.last.created_at.strftime("From #{messages.last.author.first_name} on %B %d, %Y at %H:%M")
-              %div{:id => "collapse#{conversation_id.to_s}", :class => "panel-collapse collapse in"}
+                  %a{"data-toggle" => "collapse", "data-parent" => "#accordion", :href => "#collapse#{conversation.id.to_s}"}
+                    = conversation.messages.last.created_at.strftime("From #{conversation.messages.last.author.first_name} on %B %d, %Y at %H:%M")
+              %div{:id => "collapse#{conversation.id.to_s}", :class => "panel-collapse collapse in"}
                 .panel-body
-                  = messages.last.body
+                  = conversation.messages.last.body
           
